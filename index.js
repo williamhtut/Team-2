@@ -8,6 +8,9 @@ app.set('view engine', 'ejs');
 // parse html forms
 app.use(bodyParser.urlencoded({ extended : false }));
 
+//Use files in public directory
+app.use(express.static('public'))
+
 // render the ejs page
 app.get('/', function (req, res) {
   var invalidUser = false;
