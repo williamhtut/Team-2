@@ -14,6 +14,18 @@ app.get('/', function (req, res) {
   res.render('index.ejs', { invalidUser : invalidUser });
 });
 
+// render the logout page
+app.get('/logout', function (req, res) {
+  res.render('logout.ejs');
+})
+
+// render the password reset page
+app.get('/reset', function (req, res) {
+  var blank = false;
+  res.render('reset.ejs', { blank : blank });
+})
+
+
 // when Add to Top button is clicked
 app.post('/top', function (req, res) {
   console.log(req.body.todo + " is added to top of the list.");
@@ -35,6 +47,21 @@ app.post('/login', function (req, res) {
 	  
   //lres.redirect('account.ejs');
 });
+
+//When reset password form is posted
+app.post('/reset_password', function (req, res) {
+  if (req.body.emailAddress != "")
+  {
+    res.render('reset_password.ejs');
+  }
+   else
+  {
+  var blank = true;
+  res.render('reset.ejs', { blank : blank });
+    
+  }
+  });
+
 
 // when Add to Bottom button is clicked
 app.post('/bottom', function (req, res) {
